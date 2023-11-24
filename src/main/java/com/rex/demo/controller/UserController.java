@@ -5,8 +5,10 @@ import com.rex.demo.model.response.UserResponse;
 import com.rex.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -27,7 +29,7 @@ public class UserController {
      * @return true = 成功 , false = 失敗
      */
     @PostMapping("add")
-    public ResponseEntity<?> add(@RequestBody UserRequest userRequest){
+    public ResponseEntity<?> add(@RequestBody @Valid UserRequest userRequest){
         return userService.add(userRequest);
     }
 

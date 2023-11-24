@@ -1,5 +1,7 @@
 package com.rex.demo.model.request;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 使用者請求封裝類(VO)
  *
@@ -7,8 +9,11 @@ package com.rex.demo.model.request;
  */
 public class UserRequest {
 
+    @NotBlank(message = "account cannot be blank")
     private String account;
+    @NotBlank(message = "password cannot be blank")
     private String password;
+    @NotBlank(message = "username cannot be blank")
     private String username;
     private String address;
     private String phoneNumber;

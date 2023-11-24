@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Component
 public class WebLogAspect {
 
-    private Logger logger = Logger.getLogger(String.valueOf(getClass()));
+    private final Logger logger = Logger.getLogger(String.valueOf(getClass()));
 
     ThreadLocal<Long> executeTime = new ThreadLocal<>();
 
@@ -52,23 +52,23 @@ public class WebLogAspect {
         logger.info("request time in " + (System.currentTimeMillis() - executeTime.get()) + " ms");
     }
 
-//    /**
-//     * @AfterThrowing 異常通知
-//     */
-//    @AfterThrowing(value = "Pointcut()", throwing = "e")
-//    public void afterThrowing(JoinPoint joinPoint, Exception e) {
-//        logger.info(e.toString());
-//    }
+    /**
+     * @AfterThrowing 異常通知
+     */
+    @AfterThrowing(value = "Pointcut()", throwing = "e")
+    public void afterThrowing(JoinPoint joinPoint, Exception e) {
+        logger.info(e.toString());
+    }
 
-//    /**
-//     * @Around 環繞通知
-//     */
-//    @Around("Pointcut()")
-//    public Object Around(ProceedingJoinPoint pjp) throws Throwable {
-//        logger.info("around執行方法之前");
-//        Object object = pjp.proceed();
-//        logger.info("around執行方法之後--返回值：" + object);
-//        return object;
-//    }
+    /**
+     * @Around 環繞通知
+     */
+    @Around("Pointcut()")
+    public Object Around(ProceedingJoinPoint pjp) throws Throwable {
+        logger.info("around執行方法之前");
+        Object object = pjp.proceed();
+        logger.info("around執行方法之後--返回值：" + object);
+        return object;
+    }
 
 }

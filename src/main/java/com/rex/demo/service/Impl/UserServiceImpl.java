@@ -26,7 +26,7 @@ import java.util.List;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -51,9 +51,6 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional(rollbackFor = RuntimeException.class, propagation = Propagation.REQUIRED, readOnly = false)
     public ResponseEntity<Boolean> add(UserRequest userRequest) {
-        logger.info("UserRequestArgs[ account:{} , password:{} , username:{}, address:{}, phoneNumber:{} ]",
-                userRequest.getAccount(), userRequest.getPassword(), userRequest.getUsername(), userRequest.getAddress(), userRequest.getPhoneNumber());
-
         if (userRepository.existsByAccount(userRequest.getAccount())) {
             throw new IllegalArgumentException("Account exists");
         }
