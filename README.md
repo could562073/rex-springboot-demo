@@ -1,4 +1,4 @@
-## 使用spring-Boot-JPA-Mysql 基本實作紀錄
+## 使用spring-Boot-JPA 實作紀錄
 ### 實作內容
 * 基本專案目錄MVC結構
 * 使用Spring data JPA + H2 CRUD 實作
